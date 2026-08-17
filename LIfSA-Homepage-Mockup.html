@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIfSA – Lehrinstitut für Sicherheitsausbildung</title>
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#3E4684; --navy-deep:#2A2F5C; --navy-ink:#191D3E;
+  --action:#4C63D2; --tint:#EEF1FA; --line:#DDE2F1;
+  --ink:#1B1F3B; --muted:#5C6285;
+  --on-dark:#ffffff; --on-dark-muted:#B7BEE2; --periwinkle:#A9B4E8;
+  --wrap:1180px; --r:16px;
+  --display:'Sora',system-ui,sans-serif;
+  --body:Verdana,Geneva,Tahoma,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.dsp{font-family:var(--display);line-height:1.08;margin:0;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.ph{display:block;width:100%;height:100%;object-fit:cover;background:var(--navy-deep)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--action)}
+.eyebrow.on-dark{color:var(--periwinkle)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);font-weight:600;font-size:.95rem;padding:.85em 1.4em;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s ease,color .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--action);color:#fff;box-shadow:0 8px 22px -8px rgba(76,99,210,.7)}
+.btn-primary:hover{background:#3a51c9}
+.btn-light{background:#fff;color:var(--navy-ink)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-outline{background:transparent;color:var(--navy);border-color:var(--line)}
+.btn-outline:hover{border-color:var(--navy);background:var(--tint)}
+.arw{transition:transform .15s ease}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;height:74px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;color:var(--navy-ink);font-size:1.15rem;letter-spacing:-.02em}
+.brand img{height:40px;width:auto}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:1px}
+.nav-links{display:flex;gap:24px;margin-left:auto;font-family:var(--display);font-weight:500;font-size:.92rem}
+.nav-links a{color:var(--ink);padding:6px 0;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--action);transition:width .2s ease}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-phone{font-family:var(--display);font-weight:600;font-size:.92rem;color:var(--navy)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:auto}
+.burger span{display:block;width:24px;height:2px;background:var(--navy-ink);margin:5px 0;transition:.25s}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 78% 15%,#333a72 0%,var(--navy-deep) 42%,var(--navy-ink) 100%);color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:82px 0 90px;position:relative;z-index:2}
+.hero .eyebrow{margin-bottom:20px}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.35rem);font-weight:800}
+.hero h1 .hl{color:var(--periwinkle)}
+.hero p.lead{font-size:1.14rem;color:var(--on-dark-muted);max-width:33em;margin:22px 0 30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.trust-strip{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:38px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14);font-family:var(--display);font-weight:500;font-size:.86rem;color:var(--on-dark-muted)}
+.trust-strip b{color:#fff;font-weight:700}
+/* hero visual */
+.hero-visual{position:relative;aspect-ratio:4/4.4;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:linear-gradient(160deg,#2c3266,#20254c)}
+.imgslot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.55);text-align:center;font-family:var(--display);font-size:.8rem;letter-spacing:.04em}
+.imgslot .ic{width:46px;height:46px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center}
+.badge-float{position:absolute;left:18px;bottom:18px;background:rgba(25,29,62,.72);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;z-index:3}
+.badge-float .num{font-family:var(--display);font-weight:800;font-size:1.5rem;color:#fff;line-height:1}
+.badge-float .lbl{font-size:.72rem;color:var(--on-dark-muted);max-width:11em;line-height:1.3}
+/* orbit signature */
+.orbits{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5}
+.orbit{position:absolute;top:50%;left:74%;border:1px solid rgba(169,180,232,.35);border-radius:50%;transform:translate(-50%,-50%)}
+.o1{width:340px;height:640px;transform:translate(-50%,-50%) rotate(24deg)}
+.o2{width:620px;height:360px;transform:translate(-50%,-50%) rotate(-16deg)}
+.o3{width:480px;height:480px;border-style:dashed;border-color:rgba(169,180,232,.18)}
+.electron{position:absolute;top:50%;left:74%;width:10px;height:10px;border-radius:50%;background:var(--periwinkle);box-shadow:0 0 16px 3px rgba(169,180,232,.8);transform-origin:-170px 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.e1{animation:spin 14s linear infinite}
+.e2{animation:spin 9s linear infinite reverse;transform-origin:-230px 0;width:7px;height:7px;background:#fff;box-shadow:0 0 12px 2px rgba(255,255,255,.7)}
+
+/* ---------- stats band ---------- */
+.stats{background:#fff;border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:44px 0}
+.stat{text-align:center;padding:0 8px}
+.stat .n{font-family:var(--display);font-weight:800;font-size:2.5rem;color:var(--navy);line-height:1;letter-spacing:-.02em}
+.stat .t{font-size:.86rem;color:var(--muted);margin-top:8px}
+.stat+.stat{border-left:1px solid var(--line)}
+
+/* ---------- section base ---------- */
+section{padding:86px 0}
+.sec-head{max-width:40em;margin-bottom:44px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:800;margin-top:14px;color:var(--navy-ink)}
+.sec-head p{color:var(--muted);font-size:1.05rem;margin-top:14px}
+
+/* präsenz band */
+.presence{background:var(--navy-ink);color:#fff;position:relative;overflow:hidden}
+.presence .wrap{position:relative;z-index:2}
+.presence-in{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.presence h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:800}
+.presence h2 em{font-style:normal;color:var(--periwinkle)}
+.presence p{color:var(--on-dark-muted);font-size:1.08rem;margin-top:20px;max-width:34em}
+.presence .points{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.presence .points li{display:flex;gap:12px;font-size:.98rem;color:#e9ecfb}
+.presence .points .dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(169,180,232,.18);border:1px solid var(--periwinkle);display:flex;align-items:center;justify-content:center;color:var(--periwinkle);font-size:.7rem;margin-top:2px}
+.presence-card{background:linear-gradient(160deg,#2b3068,#20254e);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:30px}
+.presence-card .big{font-family:var(--display);font-weight:800;font-size:3.4rem;color:#fff;line-height:1}
+.presence-card .cap{color:var(--on-dark-muted);margin-top:6px}
+.presence-card hr{border:0;border-top:1px solid rgba(255,255,255,.14);margin:22px 0}
+
+/* course cards */
+.courses{background:var(--tint)}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(30,36,80,.4);border-color:var(--periwinkle)}
+.card .kick{font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--action)}
+.card h3{font-size:1.32rem;font-weight:700;margin:12px 0 10px;color:var(--navy-ink)}
+.card p{color:var(--muted);font-size:.94rem;margin:0 0 16px}
+.card ul{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:9px}
+.card ul li{font-size:.9rem;padding-left:20px;position:relative;color:var(--ink)}
+.card ul li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--periwinkle)}
+.card .more{margin-top:auto;font-family:var(--display);font-weight:600;font-size:.9rem;color:var(--action);display:inline-flex;gap:.4em;align-items:center}
+
+/* split test */
+.test-split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:48px;position:relative;overflow:hidden}
+.test-split .ring{position:absolute;right:-90px;top:-90px;width:280px;height:280px;border:1.5px dashed var(--line);border-radius:50%}
+.test-split h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--navy-ink)}
+.test-split p{color:var(--muted);margin:16px 0 26px;max-width:30em}
+.test-meta{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--display);font-weight:600;font-size:.85rem;color:var(--navy)}
+.test-meta span{display:flex;align-items:center;gap:8px}
+.test-visual{background:linear-gradient(160deg,var(--navy),var(--navy-deep));border-radius:18px;padding:32px;color:#fff}
+.test-visual .q{font-family:var(--display);font-weight:600;font-size:.8rem;color:var(--periwinkle);letter-spacing:.1em;text-transform:uppercase}
+.test-visual .opt{margin-top:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:12px 14px;font-size:.9rem;display:flex;align-items:center;gap:12px}
+.test-visual .opt.correct{border-color:var(--periwinkle);background:rgba(169,180,232,.18)}
+.test-visual .opt .box{width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,.5);flex:0 0 auto}
+.test-visual .opt.correct .box{background:var(--periwinkle);border-color:var(--periwinkle)}
+
+/* förderung */
+.funding{background:linear-gradient(120deg,var(--navy),var(--navy-deep));color:#fff}
+.funding-in{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.funding h2{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:800}
+.funding h2 em{font-style:normal;color:var(--periwinkle)}
+.funding p{color:var(--on-dark-muted);margin-top:18px;max-width:32em}
+.fund-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.fund-list div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 16px;font-family:var(--display);font-weight:500;font-size:.9rem}
+.fund-note{margin-top:20px;font-size:.8rem;color:var(--on-dark-muted)}
+
+/* standorte */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.loc{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.loc .map{aspect-ratio:16/7;background:
+   linear-gradient(rgba(62,70,132,.06),rgba(62,70,132,.06)),
+   repeating-linear-gradient(0deg,#e9edf8 0 22px,#eef2fb 22px 44px),
+   repeating-linear-gradient(90deg,#e9edf8 0 22px,#eef2fb 22px 44px);
+   position:relative;display:flex;align-items:center;justify-content:center}
+.loc .pin{width:20px;height:20px;border-radius:50% 50% 50% 0;background:var(--action);transform:rotate(-45deg);box-shadow:0 6px 14px -4px rgba(76,99,210,.8)}
+.loc .body{padding:26px}
+.loc h3{font-size:1.35rem;font-weight:700;color:var(--navy-ink)}
+.loc .row{display:flex;gap:10px;margin-top:12px;font-size:.92rem;color:var(--ink)}
+.loc .row .k{color:var(--muted);min-width:78px}
+.loc .body .btn{margin-top:20px}
+
+/* jobs teaser */
+.jobs{background:var(--tint)}
+.jobs-in{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:var(--navy-ink);color:#fff;border-radius:24px;padding:44px 48px}
+.jobs-in h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800}
+.jobs-in p{color:var(--on-dark-muted);margin-top:14px;max-width:40em}
+
+/* certs */
+.certs{padding:64px 0;text-align:center}
+.certs .lbl{font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.cert-row{display:flex;align-items:center;justify-content:center;gap:46px;flex-wrap:wrap}
+.cert-row img{height:56px;width:auto;opacity:.92;filter:saturate(.9)}
+.cert-row .ihk{font-family:var(--display);font-weight:800;color:var(--navy);border:2px solid var(--navy);border-radius:10px;padding:10px 16px;font-size:1.1rem;letter-spacing:.02em}
+.cert-row .ihk small{display:block;font-family:var(--body);font-weight:400;font-size:.58rem;letter-spacing:.06em;color:var(--muted);text-transform:none}
+
+/* über uns + cta */
+.about-in{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-in h2{font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:800;color:var(--navy-ink)}
+.about-in p{color:var(--muted);margin-top:16px}
+.finalcta{background:radial-gradient(120% 140% at 20% 10%,#333a72,var(--navy-ink));color:#fff;border-radius:24px;padding:56px;text-align:center}
+.finalcta h2{font-size:clamp(2rem,3.6vw,2.9rem);font-weight:800}
+.finalcta p{color:var(--on-dark-muted);margin:16px auto 28px;max-width:34em}
+.finalcta .hero-cta{justify-content:center}
+
+/* footer */
+footer{background:var(--navy-ink);color:#fff;padding:64px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.foot-brand img{height:44px;margin-bottom:16px}
+.foot-brand p{color:var(--on-dark-muted);font-size:.9rem;max-width:22em}
+.foot-claim{font-family:var(--display);font-weight:600;color:var(--periwinkle);margin-top:16px}
+footer h4{font-family:var(--display);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--periwinkle);margin-bottom:16px;font-weight:600}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer ul a{color:var(--on-dark-muted);font-size:.9rem}
+footer ul a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--on-dark-muted);font-size:.8rem}
+.foot-bottom a{color:var(--on-dark-muted)}
+
+/* reveal (only hidden when JS is active, so no-JS still shows everything) */
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+
+.card{overflow:hidden}
+.card .cimg{height:172px;margin:-30px -30px 20px;overflow:hidden}
+.hv-img{position:absolute;inset:0;object-position:64% 50%}
+.presence-photo{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.12);aspect-ratio:4/4.4}
+.presence-photo .cap-float{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(25,29,62,.74);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;font-size:.82rem;color:#eef}
+
+/* responsive */
+@media(max-width:960px){
+  .nav-links,.nav-phone{display:none}
+  .burger{display:block}
+  .nav-cta .btn{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:34px;padding:56px 0 64px}
+  .hero-visual{aspect-ratio:16/12;order:-1}
+  .presence-in,.funding-in,.about-in,.test-split,.jobs-in{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .course-grid,.loc-grid,.fund-list{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .jobs-in{text-align:left}
+  section{padding:64px 0}
+  .test-split,.finalcta{padding:32px}
+  .mobnav.open{display:flex}
+}
+.mobnav{display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;border-bottom:1px solid var(--line);background:#fff}
+.mobnav a{padding:12px 0;font-family:var(--display);font-weight:500;border-bottom:1px solid var(--tint)}
+.mobnav .btn{margin-top:12px;justify-content:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="assets/lifsa-logo.png" alt="LIfSA">
+      <span>LIfSA<small>Sicherheitsausbildung</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#angebote">Bildungsangebote</a>
+      <a href="#standorte">Standorte</a>
+      <a href="#jobs">Jobbörse</a>
+      <a href="#test">Einstufungstest</a>
+      <a href="#about">Über uns</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-phone">0511 3906362</span>
+      <a href="#kontakt" class="btn btn-primary">Beratung anfordern</a>
+    </div>
+    <button class="burger" aria-label="Menü" onclick="document.getElementById('mobnav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobnav" id="mobnav">
+    <a href="#angebote">Bildungsangebote</a>
+    <a href="#standorte">Standorte</a>
+    <a href="#jobs">Jobbörse</a>
+    <a href="#test">Einstufungstest</a>
+    <a href="#about">Über uns</a>
+    <a href="#kontakt" class="btn btn-primary">Beratung anfordern</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0">
+  <div class="orbits">
+    <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+    <div class="electron e1"></div><div class="electron e2"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow on-dark">IHK-Sachkundeprüfung §34a · Fachkraft für Schutz und Sicherheit</div>
+      <h1>Mit Sicherheit <span class="hl">erfolgreich.</span></h1>
+      <p class="lead">Vom 34a-Schein bis zur Fachkraft für Schutz und Sicherheit – Präsenzunterricht mit echten Praxisprofis in Hannover und Bremen. Häufig zu 100 % gefördert.</p>
+      <div class="hero-cta">
+        <a href="#test" class="btn btn-primary">Passenden Lehrgang finden <span class="arw">→</span></a>
+        <a href="#kontakt" class="btn btn-ghost">Kostenlos beraten lassen</a>
+      </div>
+      <div class="trust-strip">
+        <span>Seit <b>2006</b> am Markt</span>
+        <span><b>1.000+</b> Sachkundekräfte</span>
+        <span><b>200+</b> Fachkräfte</span>
+        <span><b>AZAV</b>-zertifiziert</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="ph hv-img" src="assets/hero.jpg" alt="Sicherheitskraft im Kontrollraum mit Funkgerät">
+      <div class="badge-float">
+        <div class="num">90%+</div>
+        <div class="lbl">Bestehensquote bei der Fachkraft-Prüfung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="n">20</div><div class="t">Jahre Erfahrung seit 2006</div></div>
+    <div class="stat"><div class="n">1.000+</div><div class="t">sachkundegeprüfte Sicherheitskräfte</div></div>
+    <div class="stat"><div class="n">200+</div><div class="t">ausgebildete Fachkräfte für Schutz &amp; Sicherheit</div></div>
+    <div class="stat"><div class="n">2</div><div class="t">Standorte: Hannover &amp; Bremen</div></div>
+  </div>
+</div>
+
+<!-- PRÄSENZ USP -->
+<section class="presence">
+  <div class="wrap presence-in">
+    <div class="reveal">
+      <div class="eyebrow on-dark">Unser Versprechen</div>
+      <h2>Kein Online-Kurs.<br><em>Echter Präsenzunterricht.</em></h2>
+      <p>Bei uns lernst du im Klassenraum – mit praktischen Inhalten und Dozenten, die du jederzeit direkt fragen kannst. Wir setzen bewusst auf persönliche Betreuung für jeden einzelnen Teilnehmer statt anonymer Bildschirm-Schulungen.</p>
+      <ul class="points">
+        <li><span class="dot">✓</span> Dozenten mit langjähriger Erfahrung aus dem Bewachungsgewerbe</li>
+        <li><span class="dot">✓</span> Individuelle Betreuung – auch nach dem Abschluss deiner Maßnahme</li>
+        <li><span class="dot">✓</span> Fachspezifischer Deutschunterricht kombiniert mit der Sachkundevorbereitung (für B1-Absolventen)</li>
+        <li><span class="dot">✓</span> Unterstützung bei der Jobvermittlung über unser Branchennetzwerk</li>
+      </ul>
+    </div>
+    <div class="presence-photo reveal">
+      <img class="ph" src="assets/praesenz.jpg" alt="Persönliche Betreuung im Präsenzunterricht">
+      <div class="cap-float">Persönliche Betreuung – du kannst deinen Dozenten jederzeit direkt fragen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BILDUNGSANGEBOTE -->
+<section class="courses" id="angebote">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Bildungsangebote</div>
+      <h2>Dein Weg in die Sicherheitsbranche</h2>
+      <p>Egal, wo du gerade stehst – vom ersten Einstieg über die Berufsausbildung bis zur Weiterbildung. Alle Lehrgänge finden im Präsenzunterricht statt und sind an beiden Standorten identisch.</p>
+    </div>
+    <div class="course-grid">
+      <div class="card reveal">
+        <div class="cimg"><img class="ph" src="assets/kurs-sachkunde.jpg" alt="Sachkundeprüfung 34a"></div>
+        <div class="kick">Einstieg</div>
+        <h3>Sachkundeprüfung §34a</h3>
+        <p>Dein Einstieg in die Branche: umfassende Vorbereitung auf die IHK-Sachkundeprüfung nach §34a GewO – je nach Eignung 2 bis 12 Monate.</p>
+        <ul>
+          <li>Sachkundeprüfung §34a (Vollzeit)</li>
+          <li>Variante mit fachspezifischem Deutsch (B1)</li>
+        </ul>
+        <a href="#kontakt" class="more">Mehr erfahren →</a>
+      </div>
+      <div class="card reveal">
+        <div class="cimg"><img class="ph" src="assets/kurs-fachkraft.jpg" alt="Fachkraft für Schutz und Sicherheit"></div>
+        <div class="kick">Berufsausbildung</div>
+        <h3>Fachkraft für Schutz &amp; Sicherheit</h3>
+        <p>Der anerkannte Ausbildungsberuf der Branche – im Personen-, Objekt- und Veranstaltungsschutz, bis zur IHK-Prüfung begleitet.</p>
+        <ul>
+          <li>Fachkraft für Schutz und Sicherheit (23 Monate)</li>
+          <li>Externenprüfung für Berufserfahrene</li>
+        </ul>
+        <a href="#kontakt" class="more">Mehr erfahren →</a>
+      </div>
+      <div class="card reveal">
+        <div class="cimg"><img class="ph" src="assets/kurs-weiterbildung.jpg" alt="Fort- und Weiterbildung Sicherheit"></div>
+        <div class="kick">Fort- &amp; Weiterbildung</div>
+        <h3>Weiterqualifizieren</h3>
+        <p>Der nächste Karriereschritt – von der geprüften Sicherheitskraft bis zur Führungs- und Interventionsebene.</p>
+        <ul>
+          <li>Geprüfte Schutz- und Sicherheitskraft (GSSK)</li>
+          <li>Geprüfter Meister für Schutz und Sicherheit</li>
+          <li>VdS-geprüfte Interventionskraft</li>
+        </ul>
+        <a href="#kontakt" class="more">Mehr erfahren →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EINSTUFUNGSTEST -->
+<section id="test">
+  <div class="wrap">
+    <div class="test-split reveal">
+      <div class="ring"></div>
+      <div>
+        <div class="eyebrow">Einstufungstest</div>
+        <h2>Wie fit bist du für die Sachkundeprüfung?</h2>
+        <p>Bekomme in wenigen Minuten einen Einblick in die Art der schriftlichen Prüfungsfragen, die dich bei der Sachkundeprüfung nach §34a erwarten – kostenlos und unverbindlich.</p>
+        <div class="test-meta">
+          <span>◇ 20 Fragen</span>
+          <span>◇ Multiple Choice</span>
+          <span>◇ Sofort-Auswertung</span>
+        </div>
+        <div style="margin-top:26px"><a href="#" class="btn btn-primary">Einstufungstest starten <span class="arw">→</span></a></div>
+      </div>
+      <div class="test-visual">
+        <div class="q">Beispielfrage 3 / 20</div>
+        <div style="font-family:var(--display);font-weight:600;margin-top:10px">Wer darf eine Person durchsuchen?</div>
+        <div class="opt"><span class="box"></span> Jede Sicherheitskraft jederzeit</div>
+        <div class="opt correct"><span class="box"></span> Nur mit Einwilligung der Person</div>
+        <div class="opt"><span class="box"></span> Ausschließlich die Polizei</div>
+        <div style="font-size:.74rem;color:var(--on-dark-muted);margin-top:14px">Pro Frage können bis zu zwei Antworten richtig sein.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÖRDERUNG -->
+<section class="funding">
+  <div class="wrap funding-in">
+    <div class="reveal">
+      <div class="eyebrow on-dark">Förderung</div>
+      <h2>Deine Ausbildung – oft <em>zu 100 % gefördert.</em></h2>
+      <p>Alle Sachkunde- und Fachkraft-Lehrgänge sind bis zu 100 % förderfähig. Als AZAV-zertifizierter Träger sind unsere Maßnahmen zugelassen. Wir zeigen dir im kostenlosen Gespräch, welche Förderung für dich passt.</p>
+      <div style="margin-top:26px"><a href="#kontakt" class="btn btn-light">Förder-Beratung anfragen</a></div>
+    </div>
+    <div class="reveal">
+      <div class="fund-list">
+        <div>Bildungsgutschein (Agentur für Arbeit)</div>
+        <div>JobCenter</div>
+        <div>Berufsförderungsdienst (BfD)</div>
+        <div>Deutsche Rentenversicherung</div>
+        <div>Berufsgenossenschaft</div>
+        <div>Kostenlose Beratung vor Ort</div>
+      </div>
+      <div class="fund-note">AZAV-Zulassungsnummer: 25-15457-NT</div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDORTE -->
+<section id="standorte">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Standorte</div>
+      <h2>Zwei Standorte, ein Anspruch</h2>
+      <p>Hannover und Bremen sind vollständig gleichwertig – gleiches Lehrgangsangebot, gleiche Fördermöglichkeiten, gleiche Qualität. Wähle einfach den Standort, der für dich am besten passt.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc reveal">
+        <div class="map"><div class="pin"></div></div>
+        <div class="body">
+          <h3>Hannover</h3>
+          <div class="row"><span class="k">Adresse</span><span>Hamburger Allee 12–16, 30161 Hannover</span></div>
+          <div class="row"><span class="k">Telefon</span><span>0511 3906362</span></div>
+          <div class="row"><span class="k">E-Mail</span><span>hannover@lifsa.de</span></div>
+          <div class="row"><span class="k">Zeiten</span><span>Mo.–Fr. 09:00–15:00 Uhr</span></div>
+          <div class="row"><span class="k">Anfahrt</span><span>ca. 5 Min. zu Fuß von Hbf &amp; ZOB · Parkhaus Lister Tor</span></div>
+          <a href="#kontakt" class="btn btn-outline">Beratung in Hannover</a>
+        </div>
+      </div>
+      <div class="loc reveal">
+        <div class="map"><div class="pin"></div></div>
+        <div class="body">
+          <h3>Bremen</h3>
+          <div class="row"><span class="k">Adresse</span><span>Am Deich 80/81, 28199 Bremen</span></div>
+          <div class="row"><span class="k">Telefon</span><span>0421 24279001</span></div>
+          <div class="row"><span class="k">E-Mail</span><span>bremen@lifsa.de</span></div>
+          <div class="row"><span class="k">Zeiten</span><span>Mo.–Fr. 09:00–15:00 Uhr</span></div>
+          <div class="row"><span class="k">Anfahrt</span><span>Gut mit ÖPNV erreichbar · moderne Medientafeln</span></div>
+          <a href="#kontakt" class="btn btn-outline">Beratung in Bremen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOBS -->
+<section class="jobs" id="jobs">
+  <div class="wrap">
+    <div class="jobs-in reveal" style="background:linear-gradient(rgba(25,29,62,.86),rgba(25,29,62,.9)),url(assets/jobs.jpg) center 30%/cover">
+      <div>
+        <div class="eyebrow on-dark">Jobbörse</div>
+        <h2>Nach dem Abschluss? Wir vermitteln.</h2>
+        <p>Über unsere enge Zusammenarbeit mit regionalen Sicherheitsunternehmen erreichen uns regelmäßig aktuelle Stellenangebote – die wir hier für dich veröffentlichen.</p>
+      </div>
+      <a href="#" class="btn btn-light">Zu den Jobs →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<div class="certs">
+  <div class="wrap">
+    <div class="lbl">Zertifiziert &amp; zugelassen</div>
+    <div class="cert-row">
+      <img src="assets/cert-azav.jpg" alt="CERTQUA – zugelassener Träger nach AZAV">
+      <img src="assets/cert-vds.jpg" alt="VdS – Ausbildungsstätte für Interventionskräfte">
+      <div class="ihk">IHK<small>zugelassene Ausbildungsstelle</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ÜBER UNS -->
+<section id="about" style="padding-top:40px">
+  <div class="wrap about-in">
+    <div class="reveal">
+      <div class="eyebrow">Über uns</div>
+      <h2>Perspektiven schaffen – durch Bildung.</h2>
+      <p>Das Lehrinstitut für Sicherheitsausbildung wurde 2006 von Kurt-Jörg Ehlermann in Hannover gegründet; 2010 kam der Standort Bremen dazu. Seitdem bilden wir Menschen praxisnah, persönlich und erfolgreich für die Sicherheitsbranche aus.</p>
+      <p>Bei uns stehst du im Mittelpunkt: von der intensiven Vorbereitung auf die Sachkundeprüfung bis zum Start in deinen neuen Job begleiten dich unsere erfahrenen Dozenten Schritt für Schritt.</p>
+      <div style="margin-top:24px"><a href="#kontakt" class="btn btn-outline">Team &amp; Institut kennenlernen</a></div>
+    </div>
+    <div class="hero-visual reveal" style="aspect-ratio:16/12;border-color:var(--line)">
+      <img class="ph" src="assets/team.jpg" alt="Team von LIfSA – Sicherheitskräfte">
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="kontakt" style="padding-top:20px">
+  <div class="wrap">
+    <div class="finalcta reveal">
+      <div class="eyebrow on-dark">Kostenlos &amp; unverbindlich</div>
+      <h2>Starte deine Karriere in der Sicherheitsbranche.</h2>
+      <p>Wir beraten dich gern und finden gemeinsam den passenden Lehrgang – inklusive der für dich passenden Förderung.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary">Beratung anfordern <span class="arw">→</span></a>
+        <a href="#test" class="btn btn-ghost">Erst den Test machen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/lifsa-logo-white.png" alt="LIfSA">
+        <p>Lehrinstitut für Sicherheitsausbildung – praxisnahe Aus- und Weiterbildung für die Sicherheitsbranche in Hannover und Bremen.</p>
+        <div class="foot-claim">Perspektiven schaffen – durch Bildung.</div>
+      </div>
+      <div>
+        <h4>Bildung</h4>
+        <ul>
+          <li><a href="#angebote">Bildungsangebote</a></li>
+          <li><a href="#test">Einstufungstest</a></li>
+          <li><a href="#jobs">Jobbörse</a></li>
+          <li><a href="#about">Über uns</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hannover</h4>
+        <ul>
+          <li>Hamburger Allee 12–16</li>
+          <li>30161 Hannover</li>
+          <li><a href="tel:05113906362">0511 3906362</a></li>
+          <li><a href="mailto:hannover@lifsa.de">hannover@lifsa.de</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bremen</h4>
+        <ul>
+          <li>Am Deich 80/81</li>
+          <li>28199 Bremen</li>
+          <li><a href="tel:042124279001">0421 24279001</a></li>
+          <li><a href="mailto:bremen@lifsa.de">bremen@lifsa.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 LIfSA – Lehrinstitut für Sicherheitsausbildung (Inh. Kurt-Jörg Ehlermann)</div>
+      <div><a href="#">Impressum</a> · <a href="#">Datenschutz</a> · <a href="#">Cookie-Einstellungen</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  function showAll(){els.forEach(function(el){el.classList.add('in')})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(el){io.observe(el)});
+    // failsafe: never leave content hidden
+    setTimeout(showAll,1600);
+  } else { showAll(); }
+  document.querySelectorAll('.mobnav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mobnav').classList.remove('open')})});
+})();
+</script>
+</body>
+</html>
